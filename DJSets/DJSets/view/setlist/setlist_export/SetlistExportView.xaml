@@ -1,0 +1,180 @@
+﻿<view:HostedPage
+    x:Class="DJSets.view.setlist.setlist_export.SetlistExportView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:adonisUi="clr-namespace:AdonisUI;assembly=AdonisUI"
+    xmlns:converters="clr-namespace:DJSets.util.mvvm.converters"
+    xmlns:customViews="clr-namespace:DJSets.view.custom_views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:extensions="clr-namespace:AdonisUI.Extensions;assembly=AdonisUI"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:view="clr-namespace:DJSets.util.mvvm.view"
+    Title="SetlistExportView"
+    Margin="16"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    Background="{StaticResource BackgroundColorPrimary}"
+    mc:Ignorable="d">
+
+    <DockPanel>
+        <!--#region Buttons-->
+        <WrapPanel
+            Margin="0,16,0,0"
+            HorizontalAlignment="Right"
+            DockPanel.Dock="Bottom"
+            Orientation="Horizontal">
+
+            <WrapPanel.Resources>
+                <Style
+                    x:Key="StyleDockpanelButton"
+                    BasedOn="{StaticResource {x:Type Button}}"
+                    TargetType="{x:Type Button}">
+                    <Setter Property="Margin" Value="16,0,0,0" />
+                </Style>
+            </WrapPanel.Resources>
+            <Button
+                extensions:CursorSpotlightExtension.BackgroundBrush="{StaticResource BackgroundColorPrimaryDarkHover}"
+                extensions:RippleExtension.BackgroundBrush="{StaticResource BackgroundColorPrimaryDarkClick}"
+                Command="{Binding CancelCommand}"
+                Content="{StaticResource StrCancel}"
+                Style="{StaticResource StyleDockpanelButton}" />
+            <Button
+                extensions:CursorSpotlightExtension.BackgroundBrush="{StaticResource BackgroundColorConfirmHover}"
+                extensions:RippleExtension.BackgroundBrush="{StaticResource BackgroundColorConfirmClick}"
+                Background="{StaticResource BackgroundColorConfirm}"
+                Command="{Binding ExportCommand}"
+                Content="{StaticResource StrExport}"
+                Style="{StaticResource StyleDockpanelButton}" />
+            <!--  Copied LOC: 5 : https://benruehl.github.io/adonis-ui/docs/guides/loading/  -->
+            <ContentControl
+                Name="SaveLoadingIndicator"
+                Width="24"
+                Height="24"
+                Margin="16,0,0,0"
+                ContentTemplate="{DynamicResource {x:Static adonisUi:Templates.LoadingCircle}}"
+                Focusable="False"
+                Foreground="{DynamicResource {x:Static adonisUi:Brushes.ForegroundBrush}}"
+                Visibility="Collapsed" />
+        </WrapPanel>
+        <!--#endregion-->
+        <!--#region Content Area-->
+        <Grid>
+            <!--#region Config-->
+            <Grid.Resources>
+                <converters:SetlistExportTypeToStringConverter x:Key="ExportTypeToStringConverter" />
+            </Grid.Resources>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <!--#endregion-->
+            <!--#region Headline-->
+            <Label Style="{StaticResource StyleHeadline1}">
+                <AccessText Text="{StaticResource StrSetlistExport}" TextWrapping="Wrap" />
+            </Label>
+            <!--#endregion-->
+            <!--#region Directory-->
+            <Label
+                Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                Margin="0,16,0,8"
+                Style="{StaticResource StyleCaption}">
+                <AccessText Text="{StaticResource StrDirectory}" TextWrapping="Wrap" />
+            </Label>
+            <customViews:IconedButton
+                Grid.Row="2"
+                Grid.Column="2"
+                Margin="8,0,0,0"
+                Background="{StaticResource BackgroundColorPrimaryDark}"
+                Click="OnSelectExportDirectory"
+                TextualIcon="&#xEC50;" />
+            <TextBox
+                Grid.Row="2"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Margin="0,0,0,0"
+                Padding="16"
+                VerticalContentAlignment="Center"
+                extensions:CursorSpotlightExtension.BackgroundBrush="{StaticResource BackgroundColorTextfieldBackgroundHover}"
+                extensions:CursorSpotlightExtension.BorderBrush="{StaticResource BackgroundColorTextfieldBackgroundHover}"
+                extensions:WatermarkExtension.Watermark="{StaticResource StrChooseDefaultPathForMusicFolder}"
+                Background="{StaticResource BackgroundColorTextfieldBackground}"
+                Text="{Binding DirectoryPath, UpdateSourceTrigger=PropertyChanged}" />
+            <!--#endregion-->
+
+            <!--#region Filename-->
+            <Label
+                Grid.Row="3"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Margin="0,16,0,8"
+                Style="{StaticResource StyleCaption}">
+                <AccessText Text="{StaticResource StrFileName}" TextWrapping="Wrap" />
+            </Label>
+            <Label
+                Grid.Row="3"
+                Grid.Column="2"
+                Margin="0,16,0,8"
+                Style="{StaticResource StyleCaption}">
+                <AccessText Text="{StaticResource StrExportType}" TextWrapping="Wrap" />
+            </Label>
+
+            <TextBox
+                Grid.Row="4"
+                Grid.Column="0"
+                Margin="0,0,0,0"
+                Padding="16"
+                VerticalContentAlignment="Center"
+                extensions:CursorSpotlightExtension.BackgroundBrush="{StaticResource BackgroundColorTextfieldBackgroundHover}"
+                extensions:CursorSpotlightExtension.BorderBrush="{StaticResource BackgroundColorTextfieldBackgroundHover}"
+                extensions:WatermarkExtension.Watermark="{StaticResource StrFileName}"
+                Background="{StaticResource BackgroundColorTextfieldBackground}"
+                Text="{Binding FileName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+            <Label
+                Grid.Row="4"
+                Grid.Column="1"
+                Margin="16,0,16,0"
+                VerticalContentAlignment="Bottom"
+                FontSize="30">
+                .
+            </Label>
+
+            <ComboBox
+                Name="CmbBxExportType"
+                Grid.Row="4"
+                Grid.Column="2"
+                extensions:CursorSpotlightExtension.BackgroundBrush="{StaticResource BackgroundColorTextfieldBackgroundHover}"
+                extensions:CursorSpotlightExtension.BorderBrush="{StaticResource BackgroundColorTextfieldBackgroundHover}"
+                Background="{StaticResource BackgroundColorTextfieldBackground}"
+                BorderThickness="0"
+                FontSize="14"
+                ItemsSource="{Binding AllSetlistExportTypeFileExtensionNames}"
+                SelectedItem="{Binding SelectedExportType, Mode=TwoWay, Converter={StaticResource ExportTypeToStringConverter}}" />
+            <!--#endregion-->
+            <!--#region Export Note-->
+            <TextBlock
+                Grid.Row="5"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                Margin="0,16,0,0"
+                Style="{StaticResource StyleTextDescription}"
+                Text="{Binding ExportNote}"
+                TextWrapping="Wrap" />
+            <!--#endregion-->
+
+        </Grid>
+        <!--#endregion-->
+    </DockPanel>
+</view:HostedPage>

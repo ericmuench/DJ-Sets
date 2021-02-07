@@ -1,0 +1,55 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="resources\images\ICAutogenerate.svg" />
+    <None Remove="resources\images\ICBack.svg" />
+    <None Remove="resources\images\ICChecked.svg" />
+    <None Remove="resources\images\ICDelete.svg" />
+    <None Remove="resources\images\ICEdit_Dark.svg" />
+    <None Remove="resources\images\ICEdit_Light.svg" />
+    <None Remove="resources\images\Icon.ico" />
+    <None Remove="resources\images\ICPlay.svg" />
+    <None Remove="resources\images\ICPlus.svg" />
+    <None Remove="resources\images\ICSetlist.svg" />
+    <None Remove="resources\images\ICSettings.svg" />
+    <None Remove="resources\images\ICShare.svg" />
+    <None Remove="resources\images\ICSong.svg" />
+    <None Remove="resources\images\ICStop.svg" />
+    <None Remove="resources\images\ICUnchecked.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AdonisUI" Version="1.16.0" />
+    <PackageReference Include="AdonisUI.ClassicTheme" Version="1.16.0" />
+    <PackageReference Include="gong-wpf-dragdrop" Version="2.3.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.1" />
+    <PackageReference Include="SharpVectors.Reloaded" Version="1.7.1" />
+    <PackageReference Include="TagLibSharp" Version="2.2.0" />
+    <PackageReference Include="WindowsAPICodePack-Shell" Version="1.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="resources\images\ICAutogenerate.svg" />
+    <Resource Include="resources\images\ICBack.svg" />
+    <Resource Include="resources\images\ICChecked.svg" />
+    <Resource Include="resources\images\ICDelete.svg" />
+    <Resource Include="resources\images\ICEdit_Dark.svg" />
+    <Resource Include="resources\images\ICEdit_Light.svg" />
+    <Resource Include="resources\images\Icon.ico" />
+    <Resource Include="resources\images\ICPlay.svg" />
+    <Resource Include="resources\images\ICPlus.svg" />
+    <Resource Include="resources\images\ICSetlist.svg" />
+    <Resource Include="resources\images\ICSettings.svg" />
+    <Resource Include="resources\images\ICShare.svg" />
+    <Resource Include="resources\images\ICSong.svg" />
+    <Resource Include="resources\images\ICStop.svg" />
+    <Resource Include="resources\images\ICUnchecked.svg" />
+  </ItemGroup>
+
+</Project>

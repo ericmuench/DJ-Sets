@@ -1,0 +1,23 @@
+﻿<!--  kopierte Code-Zeilen: 2  -->
+<adonisControls:AdonisWindow
+    x:Class="DJSets.view.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:adonisControls="clr-namespace:AdonisUI.Controls;assembly=AdonisUI"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mainMenu="clr-namespace:DJSets.view.main_menu"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="{StaticResource StrAppName}"
+    Width="1024"
+    Height="600"
+    Icon="../resources/images/Icon.ico"
+    TitleBarBackground="{StaticResource BackgroundColorPrimaryDark}"
+    mc:Ignorable="d">
+
+    <Frame Name="MainFrame" NavigationUIVisibility="Hidden">
+        <Frame.Content>
+            <mainMenu:MainMenuView />
+        </Frame.Content>
+    </Frame>
+
+</adonisControls:AdonisWindow>

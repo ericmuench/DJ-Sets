@@ -1,0 +1,142 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--
+        This resource file is meant to define all values associated with Styles for UI Components
+        Convention: All Styles have a key that starts with "STYLE_"
+    -->
+
+    <!--#region  Styles for Text components e.g. Labels / Textblock etc-->
+    <Style x:Key="StyleHeadline1" TargetType="{x:Type FrameworkElement}">
+        <!--  style for TextBlock  -->
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="TextBlock.Padding" Value="0" />
+        <Setter Property="TextBlock.FontSize" Value="40" />
+        <Setter Property="TextBlock.Foreground" Value="{StaticResource BackgroundColorTextPrimary}" />
+        <Setter Property="TextBlock.FontWeight" Value="SemiBold" />
+
+        <!--  style for Label  -->
+        <Setter Property="Label.Padding" Value="0" />
+        <Setter Property="Label.FontSize" Value="40" />
+        <Setter Property="Label.Foreground" Value="{StaticResource BackgroundColorTextPrimary}" />
+        <Setter Property="Label.FontWeight" Value="SemiBold" />
+    </Style>
+
+    <Style x:Key="StyleHeadline2" TargetType="{x:Type FrameworkElement}">
+        <!--  style for TextBlock  -->
+        <Setter Property="TextBlock.FontSize" Value="28" />
+        <Setter Property="TextBlock.Foreground" Value="{StaticResource BackgroundColorTextPrimary}" />
+        <Setter Property="TextBlock.FontWeight" Value="SemiBold" />
+
+        <!--  style for Label  -->
+        <Setter Property="Label.FontSize" Value="28" />
+        <Setter Property="Label.Foreground" Value="{StaticResource BackgroundColorTextPrimary}" />
+        <Setter Property="Label.FontWeight" Value="SemiBold" />
+
+        <!--  general values  -->
+        <Setter Property="Margin" Value="0,10,0,16" />
+    </Style>
+
+    <Style x:Key="StyleLogoTitle" TargetType="{x:Type FrameworkElement}">
+        <!--  style for TextBlock  -->
+        <Setter Property="TextBlock.FontSize" Value="28" />
+        <Setter Property="TextBlock.Foreground" Value="{StaticResource BackgroundColorTextPrimary}" />
+        <Setter Property="TextBlock.FontWeight" Value="Bold" />
+
+        <!--  style for Label  -->
+        <Setter Property="Label.FontSize" Value="28" />
+        <Setter Property="Label.Foreground" Value="{StaticResource BackgroundColorTextPrimary}" />
+        <Setter Property="Label.FontWeight" Value="Bold" />
+    </Style>
+
+    <Style x:Key="StyleCaption" TargetType="{x:Type FrameworkElement}">
+        <!--  style for TextBlock  -->
+        <Setter Property="TextBlock.Padding" Value="0" />
+        <Setter Property="TextBlock.FontSize" Value="22" />
+        <Setter Property="TextBlock.Foreground" Value="{StaticResource BackgroundColorTextPrimary}" />
+        <Setter Property="TextBlock.FontWeight" Value="Regular" />
+
+        <!--  style for Label  -->
+        <Setter Property="Label.Padding" Value="0" />
+        <Setter Property="Label.FontSize" Value="22" />
+        <Setter Property="Label.Foreground" Value="{StaticResource BackgroundColorTextPrimary}" />
+        <Setter Property="Label.FontWeight" Value="Regular" />
+
+        <!--  general values  -->
+        <Setter Property="Margin" Value="0,0,0,8" />
+    </Style>
+
+    <Style x:Key="StyleSmallCaption" TargetType="{x:Type FrameworkElement}">
+        <!--  style for TextBlock  -->
+        <Setter Property="TextBlock.Padding" Value="0" />
+        <Setter Property="TextBlock.FontSize" Value="18" />
+        <Setter Property="TextBlock.Foreground" Value="{StaticResource BackgroundColorTextPrimary}" />
+        <Setter Property="TextBlock.FontWeight" Value="Bold" />
+
+        <!--  style for Label  -->
+        <Setter Property="Label.Padding" Value="0" />
+        <Setter Property="Label.FontSize" Value="18" />
+        <Setter Property="Label.Foreground" Value="{StaticResource BackgroundColorTextPrimary}" />
+        <Setter Property="Label.FontWeight" Value="Bold" />
+
+        <!--  general values  -->
+        <Setter Property="Margin" Value="0,0,0,8" />
+    </Style>
+
+
+    <Style x:Key="StyleTextDescription" TargetType="{x:Type FrameworkElement}">
+        <!--  style for TextBlock  -->
+        <Setter Property="TextBlock.Padding" Value="0" />
+        <Setter Property="TextBlock.FontSize" Value="14" />
+        <Setter Property="TextBlock.Foreground" Value="{StaticResource BackgroundColorTextSecondary}" />
+        <Setter Property="TextBlock.FontWeight" Value="Light" />
+
+        <!--  style for Label  -->
+        <Setter Property="Label.Padding" Value="0" />
+        <Setter Property="Label.FontSize" Value="14" />
+        <Setter Property="Label.Foreground" Value="{StaticResource BackgroundColorTextSecondary}" />
+        <Setter Property="Label.FontWeight" Value="Light" />
+    </Style>
+
+    <Style x:Key="SetlistItemPropertyText" TargetType="{x:Type FrameworkElement}">
+        <!--  style for TextBlock  -->
+        <Setter Property="TextBlock.Padding" Value="0" />
+        <Setter Property="TextBlock.FontSize" Value="14" />
+        <Setter Property="TextBlock.Foreground" Value="{StaticResource BackgroundColorTextPrimary}" />
+        <Setter Property="TextBlock.FontWeight" Value="Regular" />
+
+        <!--  style for Label  -->
+        <Setter Property="Label.HorizontalContentAlignment" Value="Center" />
+        <Setter Property="Label.VerticalContentAlignment" Value="Center" />
+        <Setter Property="Label.FontSize" Value="14" />
+        <Setter Property="Label.Foreground" Value="{StaticResource BackgroundColorTextPrimary}" />
+        <Setter Property="Label.FontWeight" Value="Regular" />
+
+        <!--  general style setter  -->
+        <Setter Property="Margin" Value="8,0,8,0" />
+    </Style>
+    <!--#endregion-->
+
+    <!--#region Styles for buttons-->
+    <Style
+        x:Key="{x:Type Button}"
+        BasedOn="{StaticResource {x:Type Button}}"
+        TargetType="Button">
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="Padding" Value="16,8,16,8" />
+        <Setter Property="Background" Value="{StaticResource BackgroundColorPrimaryDark}" />
+    </Style>
+    <!--#endregion-->
+
+    <!--#region Styles for TextBoxes-->
+    <Style
+        x:Key="{x:Type TextBox}"
+        BasedOn="{StaticResource {x:Type TextBox}}"
+        TargetType="TextBox">
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="Background" Value="{StaticResource BackgroundColorTextfieldBackground}" />
+    </Style>
+    <!--#endregion-->
+
+</ResourceDictionary>

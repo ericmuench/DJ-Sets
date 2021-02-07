@@ -1,0 +1,160 @@
+﻿<Page
+    x:Class="DJSets.view.song.song_menu.SongMenuView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:adonisExtensions="clr-namespace:AdonisUI.Extensions;assembly=AdonisUI"
+    xmlns:converters="clr-namespace:DJSets.util.mvvm.converters"
+    xmlns:customViews="clr-namespace:DJSets.view.custom_views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:songItem="clr-namespace:DJSets.viewmodel.song.song_item"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <!--  Copied LOC: 12  see : https://stackoverflow.com/questions/50323638/wpf-xaml-listbox-selected-item-border-color  -->
+    <Grid MouseLeftButtonDown="OnBackgroundLeftClicked">
+        <Grid.Resources>
+            <converters:NameToInitialConverter x:Key="NameInitialConvert" />
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <!--#region Headline-->
+        <Label
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="4"
+            Content="{StaticResource StrMySongs}"
+            Style="{StaticResource StyleHeadline2}" />
+        <!--#endregion-->
+        <!--#region  Search box-->
+        <customViews:SearchBar
+            Grid.Row="1"
+            Grid.Column="0"
+            Grid.ColumnSpan="4"
+            Hint="{StaticResource StrSearchSong}"
+            OnSearchQueryChanged="OnSearchbarTextChanged" />
+        <!--#endregion-->
+        <!--#region  Song area-->
+        <ListBox
+            Name="SongList"
+            Grid.Row="2"
+            Grid.Column="0"
+            Grid.ColumnSpan="4"
+            Margin="0,16,0,0"
+            HorizontalContentAlignment="Stretch"
+            VerticalContentAlignment="Stretch"
+            BorderThickness="0"
+            IsSynchronizedWithCurrentItem="False"
+            ItemsSource="{Binding SongView}"
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+            ScrollViewer.VerticalScrollBarVisibility="Auto"
+            SelectionChanged="OnSongListSelectedItemChanged"
+            SelectionMode="Extended">
+            <ListBox.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="8,8,0,8">
+                                <Label
+                                    Margin="0"
+                                    Content="{Binding Name, Converter={StaticResource NameInitialConvert}}"
+                                    Style="{StaticResource StyleSmallCaption}" />
+                                <Separator Background="{StaticResource BackgroundColorPrimaryLight}" Opacity="0.4" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+                </GroupStyle>
+            </ListBox.GroupStyle>
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel IsItemsHost="True" ItemWidth="320" />
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="Margin" Value="0,0,0,0" />
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    <Setter Property="Padding" Value="0" />
+                    <Setter Property="BorderThickness" Value="0" />
+                </Style>
+            </ListBox.ItemContainerStyle>
+            <ListBox.ItemTemplate>
+                <DataTemplate DataType="songItem:OverviewSongItemViewModel">
+                    <Border>
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Setter Property="BorderThickness" Value="1" />
+                                <Setter Property="BorderBrush" Value="Transparent" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=ListBoxItem}}" Value="True">
+                                        <Setter Property="BorderBrush" Value="{StaticResource BackgroundColorAccent}" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                        <StackPanel
+                            Margin="0,0,0,0"
+                            adonisExtensions:CursorSpotlightExtension.BackgroundBrush="{StaticResource BackgroundColorPrimaryDarkHover}"
+                            adonisExtensions:RippleExtension.BackgroundBrush="{StaticResource BackgroundColorPrimaryDarkClick}"
+                            Background="{StaticResource BackgroundColorPrimaryDark}"
+                            MouseLeftButtonDown="OnSongItemLeftDoubleClicked"
+                            MouseRightButtonUp="OnSongItemRightClicked">
+                            <TextBlock
+                                Margin="16,16,16,0"
+                                Style="{StaticResource StyleSmallCaption}"
+                                Text="{Binding Title, Mode=OneWay, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True}"
+                                TextWrapping="Wrap" />
+                            <TextBlock
+                                Margin="16,0,16,16"
+                                Style="{StaticResource StyleTextDescription}"
+                                Text="{Binding Artist, Mode=OneWay, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True}"
+                                TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <!--#endregion-->
+        <!--#region Seperator Area-->
+        <Separator
+            Grid.Row="3"
+            Grid.Column="0"
+            Grid.ColumnSpan="4"
+            Margin="0,8,0,16" />
+        <!--#endregion-->
+        <!--#region  Add Button-->
+        <customViews:MenuActionButton
+            x:Name="BtnAddSong"
+            Grid.Row="4"
+            Grid.Column="0"
+            Margin="0,16,0,0"
+            Click="OnBtnAddSongClicked"
+            IconUri="../../../resources/images/ICPlus.svg"
+            Text="{StaticResource StrCreateNewSong}" />
+
+        <customViews:MenuActionButton
+            x:Name="BtnEditSong"
+            Grid.Row="4"
+            Grid.Column="1"
+            Margin="0,16,0,0"
+            Click="OnButtonEditSongClicked"
+            IconUri="../../../resources/images/ICEdit_Dark.svg"
+            IsEnabled="False"
+            Text="{StaticResource StrEditSong}" />
+        <!--#endregion-->
+    </Grid>
+
+</Page>

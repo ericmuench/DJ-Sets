@@ -1,0 +1,120 @@
+﻿<view:HostedPage
+    x:Class="DJSets.view.filescan.MusicFileScanView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:adonisUi="clr-namespace:AdonisUI;assembly=AdonisUI"
+    xmlns:customViews="clr-namespace:DJSets.view.custom_views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:extensions="clr-namespace:AdonisUI.Extensions;assembly=AdonisUI"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:view="clr-namespace:DJSets.util.mvvm.view"
+    Title="MusicFileScanView"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    Background="{StaticResource BackgroundColorPrimary}"
+    mc:Ignorable="d">
+
+    <DockPanel Margin="16">
+        <!--#region Buttons-->
+        <WrapPanel
+            Margin="0,16,0,0"
+            HorizontalAlignment="Right"
+            DockPanel.Dock="Bottom"
+            Orientation="Horizontal">
+
+            <WrapPanel.Resources>
+                <Style
+                    x:Key="StyleDockpanelButton"
+                    BasedOn="{StaticResource {x:Type Button}}"
+                    TargetType="{x:Type Button}">
+                    <Setter Property="Margin" Value="16,0,0,0" />
+                </Style>
+            </WrapPanel.Resources>
+            <Button
+                extensions:CursorSpotlightExtension.BackgroundBrush="{StaticResource BackgroundColorPrimaryDarkHover}"
+                extensions:RippleExtension.BackgroundBrush="{StaticResource BackgroundColorPrimaryDarkClick}"
+                Command="{Binding CancelCommand}"
+                Content="{StaticResource StrCancel}"
+                Style="{StaticResource StyleDockpanelButton}" />
+            <Button
+                extensions:CursorSpotlightExtension.BackgroundBrush="{StaticResource BackgroundColorConfirmHover}"
+                extensions:RippleExtension.BackgroundBrush="{StaticResource BackgroundColorConfirmClick}"
+                Background="{StaticResource BackgroundColorConfirm}"
+                Command="{Binding SaveCommand}"
+                Content="{StaticResource StrSave}"
+                Style="{StaticResource StyleDockpanelButton}" />
+            <!--  Copied LOC: 5 : https://benruehl.github.io/adonis-ui/docs/guides/loading/  -->
+            <ContentControl
+                Name="SaveLoadingIndicator"
+                Width="24"
+                Height="24"
+                Margin="16,0,0,0"
+                ContentTemplate="{DynamicResource {x:Static adonisUi:Templates.LoadingCircle}}"
+                Focusable="False"
+                Foreground="{DynamicResource {x:Static adonisUi:Brushes.ForegroundBrush}}"
+                Visibility="Collapsed" />
+        </WrapPanel>
+        <!--#endregion-->
+        <!--#region Progress + Title-->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Label
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Style="{StaticResource StyleHeadline1}">
+                <AccessText Text="{StaticResource StrFileSystemScan}" TextWrapping="Wrap" />
+            </Label>
+            <ProgressBar
+                Name="ProgressBarScan"
+                Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                MinHeight="35"
+                Margin="0,16,0,16"
+                extensions:ProgressBarExtension.Foreground="{StaticResource BackgroundColorAccent}"
+                extensions:ProgressBarExtension.IsProgressAnimationEnabled="False"
+                extensions:ProgressBarExtension.ProgressAnimationForeground="{StaticResource BackgroundColorAccent}"
+                extensions:RippleExtension.ForegroundBrush="{StaticResource BackgroundColorAccent}"
+                Background="{StaticResource BackgroundColorPrimaryDark}"
+                Foreground="{StaticResource BackgroundColorAccent}" />
+            <ScrollViewer
+                Grid.Row="2"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Margin="0,0,0,16">
+                <TextBlock
+                    Name="TxtBlkStatus"
+                    Style="{StaticResource StyleTextDescription}"
+                    TextWrapping="Wrap">
+                    Status
+                </TextBlock>
+            </ScrollViewer>
+            <customViews:CheckButton
+                Grid.Row="3"
+                Grid.Column="0"
+                Background="Transparent"
+                IsChecked="{Binding ShouldOverrideSongDb, Mode=TwoWay, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True}" />
+            <Label
+                Grid.Row="3"
+                Grid.Column="1"
+                VerticalContentAlignment="Center"
+                FontSize="18"
+                FontWeight="Regular">
+                <AccessText Text="{StaticResource StrShouldOverrideDb}" TextWrapping="Wrap" />
+            </Label>
+        </Grid>
+        <!--#endregion-->
+    </DockPanel>
+</view:HostedPage>

@@ -1,0 +1,46 @@
+﻿<Page
+    x:Class="DJSets.view.view_util.title_description.TitleDescriptionView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:extensions="clr-namespace:AdonisUI.Extensions;assembly=AdonisUI"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="TitleDescriptionView"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top">
+            <Label
+                Margin="0,8,0,8"
+                Content="{StaticResource StrTitle}"
+                Style="{StaticResource StyleSmallCaption}" />
+            <TextBox
+                Padding="16"
+                VerticalContentAlignment="Center"
+                extensions:CursorSpotlightExtension.BackgroundBrush="{StaticResource BackgroundColorTextfieldBackgroundHover}"
+                extensions:CursorSpotlightExtension.BorderBrush="{StaticResource BackgroundColorTextfieldBackgroundHover}"
+                extensions:WatermarkExtension.Watermark="{StaticResource StrPleaseEnterTitle}"
+                Background="{StaticResource BackgroundColorTextfieldBackground}"
+                BorderThickness="0"
+                Text="{Binding Title, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
+            <Label
+                Margin="0,16,0,8"
+                Content="{StaticResource StrDescription}"
+                Style="{StaticResource StyleSmallCaption}" />
+        </StackPanel>
+        <TextBox
+            Padding="16"
+            VerticalContentAlignment="Top"
+            extensions:CursorSpotlightExtension.BackgroundBrush="{StaticResource BackgroundColorTextfieldBackgroundHover}"
+            extensions:CursorSpotlightExtension.BorderBrush="{StaticResource BackgroundColorTextfieldBackgroundHover}"
+            extensions:WatermarkExtension.Watermark="{StaticResource StrEnterDescriptionOptional}"
+            AcceptsReturn="True"
+            AcceptsTab="True"
+            Background="{StaticResource BackgroundColorTextfieldBackground}"
+            BorderThickness="0"
+            Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}"
+            TextWrapping="Wrap" />
+    </DockPanel>
+</Page>

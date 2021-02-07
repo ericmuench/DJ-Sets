@@ -1,0 +1,270 @@
+﻿<view:HostedPage
+    x:Class="DJSets.view.song.song_detail.SongDetailView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:adonisUi="clr-namespace:AdonisUI;assembly=AdonisUI"
+    xmlns:converters="clr-namespace:DJSets.util.mvvm.converters"
+    xmlns:customViews="clr-namespace:DJSets.view.custom_views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:extensions="clr-namespace:AdonisUI.Extensions;assembly=AdonisUI"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:view="clr-namespace:DJSets.util.mvvm.view"
+    Title="{Binding ActionTitle}"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <DockPanel Margin="16" Background="{StaticResource BackgroundColorPrimary}">
+        <!--#region ValueConverters-->
+        <DockPanel.Resources>
+            <converters:MusicKeysToStringConverter x:Key="MusicKeysToStringConverter" />
+        </DockPanel.Resources>
+        <!--#endregion-->
+        <!--#region Buttons-->
+        <WrapPanel
+            Margin="0,16,0,0"
+            HorizontalAlignment="Right"
+            DockPanel.Dock="Bottom"
+            Orientation="Horizontal">
+
+            <WrapPanel.Resources>
+                <Style
+                    x:Key="StyleDockpanelButton"
+                    BasedOn="{StaticResource {x:Type Button}}"
+                    TargetType="{x:Type Button}">
+                    <Setter Property="Margin" Value="16,0,0,0" />
+                </Style>
+            </WrapPanel.Resources>
+            <Button
+                extensions:CursorSpotlightExtension.BackgroundBrush="{StaticResource BackgroundColorPrimaryDarkHover}"
+                extensions:RippleExtension.BackgroundBrush="{StaticResource BackgroundColorPrimaryDarkClick}"
+                Command="{Binding CancelCommand}"
+                Content="{StaticResource StrCancel}"
+                Style="{StaticResource StyleDockpanelButton}" />
+            <Button
+                extensions:CursorSpotlightExtension.BackgroundBrush="{StaticResource BackgroundColorAccentHover}"
+                extensions:RippleExtension.BackgroundBrush="{StaticResource BackgroundColorAccentClick}"
+                Background="{StaticResource BackgroundColorAccent}"
+                Command="{Binding DeleteCommand}"
+                Content="{StaticResource StrDelete}"
+                Style="{StaticResource StyleDockpanelButton}" />
+            <Button
+                extensions:CursorSpotlightExtension.BackgroundBrush="{StaticResource BackgroundColorConfirmHover}"
+                extensions:RippleExtension.BackgroundBrush="{StaticResource BackgroundColorConfirmClick}"
+                Background="{StaticResource BackgroundColorConfirm}"
+                Command="{Binding SaveCommand}"
+                Content="{StaticResource StrSave}"
+                Style="{StaticResource StyleDockpanelButton}" />
+            <!--  Copied LOC: 5 : https://benruehl.github.io/adonis-ui/docs/guides/loading/  -->
+            <ContentControl
+                Name="SaveLoadingIndicator"
+                Width="24"
+                Height="24"
+                Margin="16,0,0,0"
+                ContentTemplate="{DynamicResource {x:Static adonisUi:Templates.LoadingCircle}}"
+                Focusable="False"
+                Foreground="{DynamicResource {x:Static adonisUi:Brushes.ForegroundBrush}}"
+                Visibility="Collapsed" />
+        </WrapPanel>
+        <!--#endregion-->
+        <!--#region Content-->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.Resources>
+                <Style
+                    x:Key="StyleSmallCaptionWithMargin"
+                    BasedOn="{StaticResource StyleSmallCaption}"
+                    TargetType="{x:Type Label}">
+                    <Setter Property="Margin" Value="8,4,0,4" />
+                </Style>
+                <Style
+                    x:Key="StyleLongTextBox"
+                    BasedOn="{StaticResource {x:Type TextBox}}"
+                    TargetType="{x:Type TextBox}">
+                    <Setter Property="Margin" Value="8,8,0,8" />
+                    <Setter Property="Padding" Value="8" />
+                    <Setter Property="FontSize" Value="14" />
+                </Style>
+                <Style
+                    x:Key="StyleShortTextBox"
+                    BasedOn="{StaticResource {x:Type TextBox}}"
+                    TargetType="{x:Type TextBox}">
+                    <Setter Property="Margin" Value="8,8,8,8" />
+                    <Setter Property="Padding" Value="8" />
+                    <Setter Property="FontSize" Value="14" />
+                </Style>
+                <Style
+                    x:Key="StyleShortComboBox"
+                    BasedOn="{StaticResource {x:Type ComboBox}}"
+                    TargetType="{x:Type ComboBox}">
+                    <Setter Property="Margin" Value="8,8,8,8" />
+                    <Setter Property="Padding" Value="8" />
+                    <Setter Property="FontSize" Value="14" />
+                </Style>
+            </Grid.Resources>
+
+            <!--#region Headline-->
+            <!--#endregion-->
+            <Label Content="{Binding ActionTitle}" Style="{StaticResource StyleHeadline2}" />
+
+            <!--#region Title-->
+            <Label
+                Grid.Row="1"
+                Grid.Column="0"
+                VerticalContentAlignment="Center"
+                Content="{StaticResource StrTitle}"
+                Style="{StaticResource StyleSmallCaptionWithMargin}" />
+            <TextBox
+                Name="TxtTitle"
+                Grid.Row="1"
+                Grid.Column="1"
+                Grid.ColumnSpan="3"
+                extensions:CursorSpotlightExtension.BackgroundBrush="{StaticResource BackgroundColorTextfieldBackgroundHover}"
+                extensions:CursorSpotlightExtension.BorderBrush="{StaticResource BackgroundColorTextfieldBackgroundHover}"
+                extensions:WatermarkExtension.Watermark="{StaticResource StrPleaseEnterTitle}"
+                Background="{StaticResource BackgroundColorTextfieldBackground}"
+                Style="{StaticResource StyleLongTextBox}"
+                Text="{Binding Title, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
+            <!--#endregion-->
+
+            <!--#region Artist-->
+            <Label
+                Grid.Row="2"
+                Grid.Column="0"
+                VerticalContentAlignment="Center"
+                Content="{StaticResource StrArtist}"
+                Style="{StaticResource StyleSmallCaptionWithMargin}" />
+
+            <TextBox
+                Grid.Row="2"
+                Grid.Column="1"
+                Grid.ColumnSpan="3"
+                extensions:CursorSpotlightExtension.BackgroundBrush="{StaticResource BackgroundColorTextfieldBackgroundHover}"
+                extensions:CursorSpotlightExtension.BorderBrush="{StaticResource BackgroundColorTextfieldBackgroundHover}"
+                extensions:WatermarkExtension.Watermark="{StaticResource StrPleaseEnterArtist}"
+                Background="{StaticResource BackgroundColorTextfieldBackground}"
+                Style="{StaticResource StyleLongTextBox}"
+                Text="{Binding Artist, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
+            <!--#endregion-->
+
+            <!--#region File-->
+            <Label
+                Grid.Row="3"
+                Grid.Column="0"
+                VerticalContentAlignment="Center"
+                Content="{StaticResource StrFile}"
+                Style="{StaticResource StyleSmallCaptionWithMargin}" />
+            <DockPanel
+                Grid.Row="3"
+                Grid.Column="1"
+                Grid.ColumnSpan="3">
+                <customViews:IconedButton
+                    Margin="8,8,0,8"
+                    Background="{StaticResource BackgroundColorPrimaryDark}"
+                    Click="OnChooseMusicFile"
+                    DockPanel.Dock="Right"
+                    TextualIcon="&#xEC50;" />
+                <TextBox
+                    extensions:CursorSpotlightExtension.BackgroundBrush="{StaticResource BackgroundColorTextfieldBackgroundHover}"
+                    extensions:CursorSpotlightExtension.BorderBrush="{StaticResource BackgroundColorTextfieldBackgroundHover}"
+                    extensions:WatermarkExtension.Watermark="{StaticResource StrPleaseEnterFile}"
+                    Background="{StaticResource BackgroundColorTextfieldBackground}"
+                    Style="{StaticResource StyleLongTextBox}"
+                    Text="{Binding FilePath, UpdateSourceTrigger=PropertyChanged}" />
+            </DockPanel>
+            <!--#endregion-->
+
+            <!--#region Further Param Headlines-->
+            <Label
+                Grid.Row="4"
+                Grid.Column="0"
+                VerticalContentAlignment="Center"
+                Content="{StaticResource StrMusicKey}"
+                Style="{StaticResource StyleSmallCaptionWithMargin}" />
+            <Label
+                Grid.Row="4"
+                Grid.Column="1"
+                VerticalContentAlignment="Center"
+                Content="{StaticResource StrTempo}"
+                Style="{StaticResource StyleSmallCaptionWithMargin}" />
+            <Label
+                Grid.Row="4"
+                Grid.Column="2"
+                VerticalContentAlignment="Center"
+                Content="{StaticResource StrGenre}"
+                Style="{StaticResource StyleSmallCaptionWithMargin}" />
+            <Label
+                Grid.Row="4"
+                Grid.Column="3"
+                VerticalContentAlignment="Center"
+                Content="{StaticResource StrDuration}"
+                Style="{StaticResource StyleSmallCaptionWithMargin}" />
+            <!--#endregion-->
+
+            <!--#region Further Params-->
+            <ComboBox
+                Name="CmbBxMusicKey"
+                Grid.Row="5"
+                Grid.Column="0"
+                extensions:CursorSpotlightExtension.BackgroundBrush="{StaticResource BackgroundColorTextfieldBackgroundHover}"
+                extensions:CursorSpotlightExtension.BorderBrush="{StaticResource BackgroundColorTextfieldBackgroundHover}"
+                Background="{StaticResource BackgroundColorTextfieldBackground}"
+                BorderThickness="0"
+                ItemsSource="{Binding AllMusicKeyTitles}"
+                SelectedItem="{Binding SelectedMusicKey, Mode=TwoWay, Converter={StaticResource MusicKeysToStringConverter}}"
+                Style="{StaticResource StyleShortComboBox}" />
+            <DockPanel Grid.Row="5" Grid.Column="1">
+                <Label
+                    VerticalContentAlignment="Center"
+                    Content="{StaticResource StrBpm}"
+                    DockPanel.Dock="Right" />
+                <TextBox
+                    extensions:CursorSpotlightExtension.BackgroundBrush="{StaticResource BackgroundColorTextfieldBackgroundHover}"
+                    extensions:CursorSpotlightExtension.BorderBrush="{StaticResource BackgroundColorTextfieldBackgroundHover}"
+                    Background="{StaticResource BackgroundColorTextfieldBackground}"
+                    Style="{StaticResource StyleShortTextBox}"
+                    Text="{Binding Tempo, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
+            </DockPanel>
+            <TextBox
+                Grid.Row="5"
+                Grid.Column="2"
+                extensions:CursorSpotlightExtension.BackgroundBrush="{StaticResource BackgroundColorTextfieldBackgroundHover}"
+                extensions:CursorSpotlightExtension.BorderBrush="{StaticResource BackgroundColorTextfieldBackgroundHover}"
+                Background="{StaticResource BackgroundColorTextfieldBackground}"
+                Style="{StaticResource StyleShortTextBox}"
+                Text="{Binding Genre, UpdateSourceTrigger=PropertyChanged}" />
+            <DockPanel Grid.Row="5" Grid.Column="3">
+                <Label
+                    VerticalContentAlignment="Center"
+                    Content="{StaticResource StrMinutesShort}"
+                    DockPanel.Dock="Right" />
+                <TextBox
+                    extensions:CursorSpotlightExtension.BackgroundBrush="{StaticResource BackgroundColorTextfieldBackgroundHover}"
+                    extensions:CursorSpotlightExtension.BorderBrush="{StaticResource BackgroundColorTextfieldBackgroundHover}"
+                    Background="{StaticResource BackgroundColorTextfieldBackground}"
+                    Style="{StaticResource StyleShortTextBox}"
+                    Text="{Binding Duration, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
+            </DockPanel>
+            <!--#endregion-->
+
+            <!--#region-->
+            <!--#endregion-->
+        </Grid>
+        <!--#endregion-->
+    </DockPanel>
+</view:HostedPage>

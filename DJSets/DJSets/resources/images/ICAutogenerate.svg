@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="69.63" height="113" viewBox="0 0 69.63 113">
+  <g id="ICAutogenerate" transform="translate(1289 270)">
+    <g id="Ellipse_14" data-name="Ellipse 14" transform="translate(-1262.949 -261.316)" fill="#929292" stroke="#929292" stroke-width="8">
+      <circle cx="8.684" cy="8.684" r="8.684" stroke="none"/>
+      <circle cx="8.684" cy="8.684" r="4.684" fill="none"/>
+    </g>
+    <g id="Ellipse_15" data-name="Ellipse 15" transform="translate(-1236.898 -270)" fill="#929292" stroke="#929292" stroke-width="8">
+      <circle cx="8.684" cy="8.684" r="8.684" stroke="none"/>
+      <circle cx="8.684" cy="8.684" r="4.684" fill="none"/>
+    </g>
+    <g id="Ellipse_19" data-name="Ellipse 19" transform="translate(-1289 -270)" fill="#929292" stroke="#929292" stroke-width="8">
+      <circle cx="8.684" cy="8.684" r="8.684" stroke="none"/>
+      <circle cx="8.684" cy="8.684" r="4.684" fill="none"/>
+    </g>
+    <g id="Ellipse_22" data-name="Ellipse 22" transform="translate(-1271.633 -230.923)" fill="none" stroke="#929292" stroke-width="8">
+      <circle cx="17.367" cy="17.367" r="17.367" stroke="none"/>
+      <circle cx="17.367" cy="17.367" r="13.367" fill="none"/>
+    </g>
+    <rect id="Rechteck_209" data-name="Rechteck 209" width="5.97" height="19.538" transform="translate(-1256.979 -247.205)" fill="#929292"/>
+    <path id="Pfad_108" data-name="Pfad 108" d="M0,0H5.97V19.538H0Z" transform="translate(-1230.928 -254.803)" fill="#929292"/>
+    <path id="Pfad_109" data-name="Pfad 109" d="M0,0H5.97V19.538H0Z" transform="translate(-1229.115 -239.399) rotate(45)" fill="#929292"/>
+    <path id="Pfad_110" data-name="Pfad 110" d="M0,0H5.97V19.538H0Z" transform="translate(-1283.03 -254.803)" fill="#929292"/>
+    <path id="Pfad_111" data-name="Pfad 111" d="M0,0H5.97V19.538H0Z" transform="translate(-1283.094 -235.178) rotate(-45)" fill="#929292"/>
+    <g id="Ellipse_23" data-name="Ellipse 23" transform="translate(-1245.421 -165.684) rotate(-180)" fill="#929292" stroke="#929292" stroke-width="8">
+      <circle cx="8.684" cy="8.684" r="8.684" stroke="none"/>
+      <circle cx="8.684" cy="8.684" r="4.684" fill="none"/>
+    </g>
+    <g id="Ellipse_24" data-name="Ellipse 24" transform="translate(-1271.472 -157) rotate(-180)" fill="#929292" stroke="#929292" stroke-width="8">
+      <circle cx="8.684" cy="8.684" r="8.684" stroke="none"/>
+      <circle cx="8.684" cy="8.684" r="4.684" fill="none"/>
+    </g>
+    <g id="Ellipse_25" data-name="Ellipse 25" transform="translate(-1219.37 -157) rotate(-180)" fill="#929292" stroke="#929292" stroke-width="8">
+      <circle cx="8.684" cy="8.684" r="8.684" stroke="none"/>
+      <circle cx="8.684" cy="8.684" r="4.684" fill="none"/>
+    </g>
+    <rect id="Rechteck_210" data-name="Rechteck 210" width="5.97" height="19.538" transform="translate(-1251.391 -179.795) rotate(-180)" fill="#929292"/>
+    <path id="Pfad_112" data-name="Pfad 112" d="M0,0H5.97V19.538H0Z" transform="translate(-1277.442 -172.197) rotate(-180)" fill="#929292"/>
+    <path id="Pfad_113" data-name="Pfad 113" d="M0,0H5.97V19.538H0Z" transform="translate(-1279.254 -187.601) rotate(-135)" fill="#929292"/>
+    <path id="Pfad_114" data-name="Pfad 114" d="M0,0H5.97V19.538H0Z" transform="translate(-1225.34 -172.197) rotate(-180)" fill="#929292"/>
+    <path id="Pfad_115" data-name="Pfad 115" d="M0,0H5.97V19.538H0Z" transform="translate(-1225.276 -191.822) rotate(135)" fill="#929292"/>
+  </g>
+</svg>

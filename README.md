@@ -31,6 +31,14 @@ DJ-Sets is intended to solve or at least reduce the problems mentioned in the pr
 - All program-settings are stored separately from the programme data in a JSON file.
 
 ## Notes regarding files
+When the programme is started for the first time, a folder called "DJSets" is created in the documents folder of the computer. The folder "ApplicationData" is located in this folder. This folder contains the SQLite database for the programme in the form of the file "djsets.db" as well as the user settings in the form of the file "djsets_appconfig.json". If there is no longer any need to use the programme, the "DJSets" folder can be easily deleted.
 
 ## Notes for Developers
+This app was programmed with C# and WPF using the following libraries:
+- [SharpVectors.Reloaded](https://www.nuget.org/packages/SharpVectors.Reloaded/)
+- [Adonis UI Framework](https://github.com/benruehl/adonis-ui)
+- [MS Entity Framework Core SQLite](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SQLite)
+- [TagLibSharp](https://github.com/mono/taglib-sharp/)
+- [WindowsAPICodePack-Shell](https://www.nuget.org/packages/Microsoft-WindowsAPICodePack-Shell/)
+- [gong-wpf-dragdrop](https://github.com/punker76/gong-wpf-dragdrop)
 

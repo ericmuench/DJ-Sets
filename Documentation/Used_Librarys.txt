@@ -1,0 +1,7 @@
+SharpVectors.Reloaded
+Adonis UI Framework
+Adonis UI Framework Classic Theme
+MS Entity Framework Core SQLite
+TagLibSharp
+WindowsAPICodePack-Shell
+gong-wpf-dragdrop
